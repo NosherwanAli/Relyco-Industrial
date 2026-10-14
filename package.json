@@ -1,0 +1,12 @@
+{
+  "name": "relyco-industrial",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Relyco Industrial website",
+  "scripts": {
+    "dev": "live-server --port=5500 --open=./ --watch=index.html,css,js,assets"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
