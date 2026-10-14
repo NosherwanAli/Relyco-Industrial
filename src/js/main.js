@@ -8,7 +8,85 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavActive();
   initSplitText();
   initSliders();
+  initButtonFx();
+  initStepsLine();
 });
+
+// "How it works" timeline: draw the line from its start once it scrolls into view.
+function initStepsLine() {
+  const steps = document.querySelector('.steps');
+  if (!steps) return;
+
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    steps.classList.add('js-draw');
+    const trigger = ScrollTrigger.create({
+      trigger: steps,
+      start: 'clamp(top 75%)',
+      once: true,
+      onEnter: () => steps.classList.add('is-drawn'),
+    });
+    return () => {
+      trigger.kill();
+      steps.classList.remove('js-draw', 'is-drawn');
+    };
+  });
+}
+
+// Hover fill: the icon tile expands across the button, revealing an inverted copy of
+// the label while the chevron travels to the end of the centred label + chevron group.
+function initButtonFx() {
+  const buttons = [...document.querySelectorAll('.btn')].filter((btn) => btn.querySelector('.btn-icon img'));
+
+  buttons.forEach((btn) => {
+    const textNodes = [...btn.childNodes].filter((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+    const text = textNodes.map((n) => n.textContent.trim()).join(' ');
+    textNodes.forEach((n) => n.remove());
+
+    const label = document.createElement('span');
+    label.className = 'btn-label';
+    label.textContent = text;
+
+    const fill = document.createElement('span');
+    fill.className = 'btn-fill';
+    fill.setAttribute('aria-hidden', 'true');
+    const fillLabel = document.createElement('span');
+    fillLabel.className = 'btn-fill-label';
+    fillLabel.textContent = text;
+    fill.append(fillLabel);
+
+    btn.append(label, fill);
+    btn.classList.add('is-fx');
+  });
+
+  const layout = (btn) => {
+    const icon = btn.querySelector('.btn-icon');
+    const chevron = icon.querySelector('img');
+    const label = btn.querySelector('.btn-label');
+    const inset = icon.offsetLeft;
+    const fullWidth = btn.clientWidth - inset * 2;
+    const gap = parseFloat(getComputedStyle(btn).columnGap) || 0;
+    const groupStart = Math.max(0, (fullWidth - (label.offsetWidth + gap + chevron.offsetWidth)) / 2);
+    const vars = {
+      '--fx-l': inset,
+      '--fx-t': icon.offsetTop,
+      '--fx-h': icon.offsetHeight,
+      '--fx-w0': icon.offsetWidth,
+      '--fx-w1': fullWidth,
+      '--fx-label-x': groupStart,
+      '--fx-chev': inset + groupStart + label.offsetWidth + gap - chevron.offsetLeft,
+      '--fx-push': fullWidth - icon.offsetWidth,
+    };
+    Object.entries(vars).forEach(([name, value]) => btn.style.setProperty(name, `${value}px`));
+    btn.style.setProperty('--fx-r', getComputedStyle(icon).borderRadius);
+  };
+
+  const observer = new ResizeObserver((entries) => entries.forEach((entry) => layout(entry.target)));
+  buttons.forEach((btn) => {
+    layout(btn);
+    observer.observe(btn);
+  });
+  document.fonts?.ready.then(() => buttons.forEach(layout));
+}
 
 function initSliders() {
   document.querySelectorAll('[data-slider]').forEach((slider) => {
