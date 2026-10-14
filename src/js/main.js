@@ -1,3 +1,7 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+
 document.addEventListener('DOMContentLoaded', () => {
   setCurrentYear();
   initMobileNav();
@@ -37,9 +41,6 @@ function initSliders() {
 const SPLIT_STAGGER = { chars: 0.015, words: 0.05, lines: 0.1 };
 
 function initSplitText() {
-  const { gsap, ScrollTrigger, SplitText } = window;
-  if (!gsap || !ScrollTrigger || !SplitText) return;
-
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   // Refreshing mid-scroll cancels smooth anchor scrolling, so wait until scrolling settles.
