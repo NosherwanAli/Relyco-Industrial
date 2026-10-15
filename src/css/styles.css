@@ -1862,7 +1862,7 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   height: 5px;
   margin-left: -2.5px;
   border-radius: 50%;
-  background: #111;
+  background: #ff5a1f;
 }
 
 .step-index {
