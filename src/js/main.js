@@ -96,7 +96,8 @@ function initButtonFx() {
       '--fx-chev': inset + groupStart + label.offsetWidth + gap - chevron.offsetLeft,
       '--fx-push': fullWidth - icon.offsetWidth,
     };
-    Object.entries(vars).forEach(([name, value]) => btn.style.setProperty(name, `${value}px`));
+    // Whole pixels keep the chevron and label on the pixel grid (fractional offsets blur them).
+    Object.entries(vars).forEach(([name, value]) => btn.style.setProperty(name, `${Math.round(value)}px`));
     btn.style.setProperty('--fx-r', getComputedStyle(icon).borderRadius);
   };
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 471.04 179.76">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: .48em;
+      }
+
+      .cls-2 {
+        letter-spacing: .51em;
+      }
+
+      .cls-3 {
+        font-family: HelveticaNowText-Regular, 'Helvetica Now Text ';
+        font-size: 22.95px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        letter-spacing: -.12em;
+      }
+
+      .cls-4 {
+        font-family: HelveticaNowText-Bold, 'Helvetica Now Text ';
+        font-size: 92.54px;
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="272.17" y1="74.23" x2="397.7" y2="74.23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6b00"/>
+      <stop offset="1" stop-color="#ff3d81"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-6" d="M364.04,107.16c-15.1,0-25.38-9.65-29.97-18.67-.2-.38-.37-.77-.55-1.16-2.57,4.68-5.1,8.15-8.08,11.1-5.81,5.75-12.65,8.67-20.35,8.67-2.6,0-5.33-.34-8.12-1-13.88-3.31-23.57-14.71-24.7-29.04-.71-8.98,2.1-17.61,7.91-24.3,5.81-6.68,13.99-10.7,23.04-11.32.87-.06,1.74-.09,2.6-.09,7.87,0,15.01,2.53,21.23,7.51.17.13.33.27.5.41.06.05.13.12.21.2l1,1.05-6.18,8.09-2-1.51c-.45-.34-.86-.64-1.27-.95-4-2.94-8.75-4.49-13.71-4.49-7.64,0-14.78,3.71-19.08,9.94-4.04,5.83-5.07,13.04-2.84,19.78,2.21,6.66,7.27,11.78,13.9,14.05,2.16.74,4.39,1.11,6.62,1.11,5.9,0,11.53-2.65,15.43-7.27,2.72-3.22,5.02-7.04,7.24-12.02,1.17-2.63,2.31-5.32,3.42-7.92l.05-.11c.82-1.93,1.84-4.34,2.82-6.58,3.3-7.53,8-13.01,14.37-16.75,5.16-3.03,11.02-4.63,16.94-4.63,12.64,0,24.03,7.03,29.73,18.36,4.62,9.19,4.69,19.76.18,29-4.48,9.19-12.88,15.66-23.04,17.76-2.44.5-4.89.76-7.29.76h0ZM364.61,51.7c-6.8,0-12.54,2.6-17.05,7.72-5.25,5.96-7.2,12.53-5.78,19.53,2.05,10.16,11.69,17.82,22.42,17.82,12.58,0,22.74-9.73,23.12-22.16.18-5.66-2.12-11.41-6.3-15.76-4.26-4.44-10.07-7.04-15.95-7.14-.16,0-.31,0-.46,0Z"/>
+  <text class="cls-4" transform="translate(73.34 107.18) scale(.9 1)"><tspan x="0" y="0">RE</tspan><tspan class="cls-5" x="121.22" y="0">L</tspan><tspan x="163.32" y="0">Y</tspan></text>
+  <text class="cls-3" transform="translate(78.3 138.48) scale(.9 1)"><tspan class="cls-2" x="0" y="0">TECH SO</tspan><tspan class="cls-1" x="186.11" y="0">L</tspan><tspan class="cls-2" x="210.64" y="0">UTIONS</tspan></text>
+</svg>

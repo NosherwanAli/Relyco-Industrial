@@ -1826,7 +1826,7 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   left: var(--line-start);
   right: var(--line-end);
   height: 1px;
-  background: #111;
+  background: #ff5a1f;
   transform-origin: left center;
 }
 
