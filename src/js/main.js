@@ -12,6 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initStepsLine();
 });
 
+// Arriving from another page with a #section link: the browser's smooth scroll to the
+// section is cancelled by ScrollTrigger's load-time refresh, so jump there once ready.
+// Text animations that play on the way can settle the layout a few pixels shorter, so
+// re-align after each ScrollTrigger refresh until the visitor starts scrolling.
+window.addEventListener('load', () => {
+  const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+  if (!target) return;
+
+  const align = () => target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  const stop = () => {
+    ScrollTrigger.removeEventListener('refresh', align);
+    ['wheel', 'touchstart', 'keydown'].forEach((type) => window.removeEventListener(type, stop));
+  };
+
+  requestAnimationFrame(align);
+  ScrollTrigger.addEventListener('refresh', align);
+  ['wheel', 'touchstart', 'keydown'].forEach((type) => window.addEventListener(type, stop, { passive: true }));
+  setTimeout(stop, 3000);
+});
+
 // "How it works" timeline: draw the line from its start once it scrolls into view.
 function initStepsLine() {
   const steps = document.querySelector('.steps');
