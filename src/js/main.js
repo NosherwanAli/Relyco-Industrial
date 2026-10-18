@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 document.addEventListener('DOMContentLoaded', () => {
   setCurrentYear();
@@ -10,7 +11,46 @@ document.addEventListener('DOMContentLoaded', () => {
   initSliders();
   initButtonFx();
   initStepsLine();
+  initBackToTop();
 });
+
+// Footer "Back to top": scroll the current page to the top without navigating or changing the URL.
+// Uses GSAP's ScrollToPlugin rather than native smooth scrolling, which ScrollTrigger refreshes
+// can cancel part-way; refreshes wait (see scheduleRefresh) until the scroll has finished.
+let programmaticScroll = false;
+
+function initBackToTop() {
+  gsap.registerPlugin(ScrollToPlugin);
+  const root = document.documentElement;
+  const visitorInput = ['wheel', 'touchstart', 'keydown'];
+
+  document.querySelectorAll('.back-to-top').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let tween;
+      const stop = () => tween.kill();
+      const done = () => {
+        programmaticScroll = false;
+        root.style.scrollBehavior = '';
+        visitorInput.forEach((type) => window.removeEventListener(type, stop));
+      };
+
+      programmaticScroll = true;
+      // CSS `scroll-behavior: smooth` would smooth every frame GSAP sets, so pause it meanwhile.
+      root.style.scrollBehavior = 'auto';
+      tween = gsap.to(window, {
+        scrollTo: { y: 0, autoKill: false },
+        duration: reduceMotion ? 0 : Math.min(1.4, 0.5 + window.scrollY / 10000),
+        ease: 'power2.inOut',
+        overwrite: true,
+        onComplete: done,
+        onInterrupt: done,
+      });
+      visitorInput.forEach((type) => window.addEventListener(type, stop, { passive: true, once: true }));
+    });
+  });
+}
 
 // Arriving from another page with a #section link: the browser's smooth scroll to the
 // section is cancelled by ScrollTrigger's load-time refresh, so jump there once ready.
@@ -147,6 +187,10 @@ function initSplitText() {
   const scheduleRefresh = () => {
     clearTimeout(refreshTimer);
     refreshTimer = setTimeout(() => {
+      if (programmaticScroll) {
+        scheduleRefresh();
+        return;
+      }
       refreshTimer = null;
       ScrollTrigger.refresh();
     }, 250);

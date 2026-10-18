@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'),
         product: resolve(root, 'product.html'),
+        services: resolve(root, 'services.html'),
       },
     },
   },
