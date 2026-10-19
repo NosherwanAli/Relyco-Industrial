@@ -147,6 +147,29 @@ function initButtonFx() {
     observer.observe(btn);
   });
   document.fonts?.ready.then(() => buttons.forEach(layout));
+
+  // Touch screens have no hover, and :active only lasts for the instant of a tap, so play the
+  // same effect on touch with a press class held for at least one full transition. It is always
+  // removed on release, so nothing stays stuck, and the tap/navigation itself is never delayed.
+  const minPress = (parseFloat(buttons[0] && getComputedStyle(buttons[0]).getPropertyValue('--fx-dur')) || 0.34) * 1000;
+  buttons.forEach((btn) => {
+    let pressedAt = 0;
+    let releaseTimer;
+    const release = () => {
+      clearTimeout(releaseTimer);
+      releaseTimer = setTimeout(() => btn.classList.remove('is-pressed'), Math.max(0, minPress - (performance.now() - pressedAt)));
+    };
+    btn.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') return;
+      clearTimeout(releaseTimer);
+      pressedAt = performance.now();
+      btn.classList.add('is-pressed');
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((type) => btn.addEventListener(type, (event) => {
+      if (event.pointerType !== 'mouse' && btn.classList.contains('is-pressed')) release();
+    }));
+  });
+  window.addEventListener('pageshow', () => buttons.forEach((btn) => btn.classList.remove('is-pressed')));
 }
 
 function initSliders() {

@@ -175,25 +175,31 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   transform: translateY(-50%);
 }
 
-.btn.is-fx:focus-visible .btn-fill {
+/* Active state: keyboard focus, touch press (.is-pressed, added by initButtonFx) and,
+   on devices with a real hover-capable pointer, mouse hover. */
+.btn.is-fx:focus-visible .btn-fill,
+.btn.is-fx.is-pressed .btn-fill {
   clip-path: inset(0 0 0 0 round var(--fx-r));
   opacity: 1;
   transition: clip-path var(--fx-dur) var(--fx-ease), opacity 0s;
 }
 
-.btn.is-fx:focus-visible .btn-fill-label {
+.btn.is-fx:focus-visible .btn-fill-label,
+.btn.is-fx.is-pressed .btn-fill-label {
   opacity: 1;
 }
 
-.btn.is-fx:focus-visible .btn-icon img {
+.btn.is-fx:focus-visible .btn-icon img,
+.btn.is-fx.is-pressed .btn-icon img {
   transform: translateX(var(--fx-chev));
 }
 
-.btn.is-fx:focus-visible .btn-label {
+.btn.is-fx:focus-visible .btn-label,
+.btn.is-fx.is-pressed .btn-label {
   transform: translateX(var(--fx-push));
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .btn.is-fx:hover .btn-fill {
     clip-path: inset(0 0 0 0 round var(--fx-r));
     opacity: 1;
@@ -211,6 +217,10 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   .btn.is-fx:hover .btn-label {
     transform: translateX(var(--fx-push));
   }
+}
+
+.btn.is-fx {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn--light {
@@ -2469,13 +2479,44 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 }
 
 .service-detail-title {
-  max-width: 430px;
+  max-width: 419px;
   margin-top: 40px;
-  font-size: 2.25rem;
-  font-weight: 600;
+  font-size: 2.1875rem;
+  font-weight: 700;
   line-height: 38px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: #000;
+}
+
+/* Card 02's title: 435 x 76 in the design, always two lines. When its column is narrower
+   than the design width, the type scales with the column (8.04cqw = 35px at the 435px design width). */
+#maintenance .service-detail-body {
+  container-type: inline-size;
+}
+
+#maintenance .service-detail-title {
+  width: 435px;
+  max-width: 100%;
+  font-size: min(2.1875rem, 8.04cqw);
+  line-height: 1.086;
+}
+
+@media (max-width: 1100px) {
+  #maintenance .service-detail-title {
+    font-size: min(1.875rem, 8.04cqw);
+  }
+}
+
+@media (max-width: 767px) {
+  #maintenance .service-detail-title {
+    font-size: min(1.5rem, 8.04cqw);
+  }
+}
+
+@media (min-width: 1101px) {
+  #maintenance .service-detail-body {
+    padding-right: 48px;
+  }
 }
 
 .service-detail-text {
