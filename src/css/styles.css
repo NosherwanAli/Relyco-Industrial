@@ -3414,6 +3414,47 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   }
 }
 
+/* ========== Zoom-safe heading sizes (desktop layout) ==========
+   Text sized in vw does not grow with browser zoom, while px/rem text does. These headings
+   used to reach their size only at 1440px, so at 110% zoom (1440px screen = 1309 CSS px) they
+   stayed the same size on screen while all other text grew. On the desktop layout they now
+   reach their design size by 1200px; maximums are the exact sizes they render at 1440px,
+   so 100% zoom is unchanged. Tablet and mobile sizes are untouched. */
+@media (min-width: 1101px) {
+  .hero-title { font-size: clamp(2.25rem, 3.917vw + 0.5rem, 3.4375rem); }
+  .about-title,
+  .section-title { font-size: clamp(2rem, 4.667vw, 3.5rem); }
+  .sourcing-title { font-size: clamp(1.75rem, 4vw, 47.9952px); }
+  .why-closing { font-size: clamp(1.5rem, 3.333vw, 2.5rem); }
+  .cta-title { font-size: clamp(2.25rem, 5.417vw, 64.944px); }
+  .cta--services .cta-title { font-size: clamp(2.25rem, 4.917vw, 3.6875rem); }
+  .page-hero-title { font-size: clamp(2.25rem, 4.583vw, 3.4375rem); }
+  .how-source-title { font-size: clamp(1.75rem, 4.067vw, 48.672px); }
+  .steps {
+    --num-size: clamp(3rem, 7.167vw, 85.968px);
+    --title-size: clamp(1.375rem, 3vw, 2.25rem);
+  }
+}
+
+/* "How it works" step titles are single-line in a fixed-ratio column. "Keep moving" is the widest
+   (6.93 x its font size) and overhangs its 240px column by ~10px in the design at 1440px; cap the
+   size so it never overhangs more than that when the column narrows (zoom or smaller screens). */
+@media (min-width: 901px) {
+  .process > .container {
+    container-type: inline-size;
+  }
+
+  .steps {
+    /* each step column is 18.75% of the steps width (= 100cqw here) */
+    --title-fit: min(var(--title-size), calc((18.75cqw + 10px) / 6.93));
+    --line-top: calc(var(--num-size) + var(--title-gap) + var(--title-fit) + 69px);
+  }
+
+  .step-title {
+    font-size: var(--title-fit);
+  }
+}
+
 /* ========== Footer ========== */
 .site-footer {
   background: #111;
