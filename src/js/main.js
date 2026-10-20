@@ -12,7 +12,37 @@ document.addEventListener('DOMContentLoaded', () => {
   initButtonFx();
   initStepsLine();
   initBackToTop();
+  initSectorTabs();
 });
+
+// Industries page: tab list that switches the detail panel (click, or arrow keys / Home / End).
+function initSectorTabs() {
+  document.querySelectorAll('[data-sector-tabs]').forEach((root) => {
+    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    const select = (tab, focus) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        panel.hidden = !on;
+        panel.classList.toggle('is-active', on);
+      });
+      if (focus) tab.focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab, false));
+      tab.addEventListener('keydown', (event) => {
+        const keys = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
+        if (!(event.key in keys)) return;
+        event.preventDefault();
+        select(tabs[(keys[event.key] + tabs.length) % tabs.length], true);
+      });
+    });
+  });
+}
 
 // Footer "Back to top": scroll the current page to the top without navigating or changing the URL.
 // Uses GSAP's ScrollToPlugin rather than native smooth scrolling, which ScrollTrigger refreshes

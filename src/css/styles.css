@@ -2891,6 +2891,541 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   }
 }
 
+/* ========== Industries page: hero (variant of the Services photo hero) ========== */
+.page-hero.page-hero--industries .page-hero-inner {
+  padding-top: 194px;
+}
+
+.page-hero--industries .page-hero-title-strong {
+  margin-bottom: 0;
+}
+
+.page-hero--industries .page-hero-text {
+  margin-top: 39px;
+}
+
+.page-hero--industries .page-hero-actions .btn--light {
+  padding-right: 34px;
+}
+
+.page-hero--industries .page-hero-actions .btn--outline {
+  gap: 6px;
+  padding-right: 12px;
+  font-size: 0.6rem;
+}
+
+.page-hero--industries .page-hero-text,
+.page-hero--industries .page-hero-text:first-of-type {
+  max-width: min(590px, 41vw);
+}
+
+.page-hero--industries .page-hero-actions {
+  gap: 1rem 62px;
+  margin-top: 78px;
+}
+
+.page-hero--industries .scroll-cue {
+  margin-top: 116px;
+}
+
+@media (max-width: 1024px) {
+  .page-hero--industries .page-hero-text,
+  .page-hero--industries .page-hero-text:first-of-type {
+    max-width: 600px;
+  }
+
+  .page-hero--industries .page-hero-actions {
+    margin-top: 2.5rem;
+  }
+}
+
+/* ========== Industries page: industries we serve (tabs) ========== */
+.sectors {
+  background: #f8fafc;
+  color: #1e1e1e;
+}
+
+.sectors > .container {
+  padding-top: 66px;
+  padding-bottom: 68px;
+}
+
+.sectors-title {
+  max-width: none;
+  margin-top: 48px;
+  color: #111;
+}
+
+.sectors-title .section-title-strong {
+  margin-bottom: 0;
+  line-height: 1.148;
+}
+
+.sectors-lead {
+  max-width: 912px;
+  margin-top: 31px;
+}
+
+.sectors-layout {
+  display: grid;
+  grid-template-columns: minmax(420px, 432fr) minmax(0, 880fr);
+  column-gap: 35px;
+  align-items: start;
+  margin-top: 55px;
+  margin-right: calc(-1 * var(--gutter) + 13px);
+}
+
+.sector-tabs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+  border-top: 1px solid #a9a9a9;
+}
+
+.sector-tab {
+  --tab-border: #a9a9a9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 66px;
+  margin-top: -1px;
+  padding: 0 26px 0 23px;
+  border: 1px solid var(--tab-border);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  color: #a9a9a9;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.sector-tab:first-child {
+  height: 65px;
+}
+
+.sector-tab + .sector-tab {
+  padding-top: 4px;
+}
+
+.sector-tab.is-active {
+  z-index: 1;
+  border-color: transparent;
+  background:
+    linear-gradient(#f8fafc, #f8fafc) padding-box,
+    linear-gradient(90deg, #ff5a1f, #ff3f79) border-box;
+  color: #1e1e1e;
+}
+
+.sector-tab-index,
+.sector-tab-name,
+.sector-tab-arrow {
+  transition: transform 0.3s ease, color var(--transition), stroke var(--transition);
+}
+
+.sector-tab-index {
+  flex-shrink: 0;
+  width: 61px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sector-tab-name {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.sector-tab-arrow {
+  flex-shrink: 0;
+  width: 33px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sector-tab-index,
+.sector-tab-name {
+  transform-origin: left center;
+}
+
+.sector-tab.is-active .sector-tab-index,
+.sector-tab.is-active .sector-tab-name {
+  transform: scale(1.1);
+}
+
+.sector-tab.is-active .sector-tab-arrow {
+  stroke: #ff4b47;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sector-tab:not(.is-active):hover {
+    color: #555;
+  }
+}
+
+.sector-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.sector-panels {
+  display: grid;
+}
+
+.sector-panel {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  animation: sector-in 0.45s ease both;
+}
+
+.sector-panel[hidden] {
+  display: none;
+}
+
+@keyframes sector-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.sector-panel-media {
+  width: 100%;
+  aspect-ratio: 880 / 334;
+  object-fit: cover;
+}
+
+.sector-panel-body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 29px 46px 50px;
+}
+
+.sector-panel-index {
+  position: absolute;
+  top: 36px;
+  left: calc(100% - 128px);
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: transparent;
+  -webkit-text-stroke: 1px #1e1e1e;
+}
+
+.sector-panel-title {
+  max-width: calc(100% - 140px);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 36px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.sector-panel-text {
+  max-width: 610px;
+  margin-top: 16px;
+  font-size: 1.125rem;
+  line-height: 22px;
+}
+
+/* Steel & Fabrication's description box is narrower in the design */
+#sector-panel-3 .sector-panel-text {
+  max-width: 545px;
+}
+
+/* …and so is Facilities & Maintenance's (breaks after "maintenance-") */
+#sector-panel-9 .sector-panel-text {
+  max-width: 590px;
+}
+
+.sector-panel-label {
+  margin-top: 31px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.sector-panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 20px;
+  list-style: none;
+  font-size: 0.8125rem;
+  line-height: 16px;
+  color: #000;
+}
+
+.sector-panel-tags li::before {
+  content: "\2022";
+  margin-right: 6px;
+  font-size: 0.6em;
+  vertical-align: 0.25em;
+}
+
+.sector-panel-body .btn {
+  margin-top: 38px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sector-panel {
+    animation: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sectors-layout {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.5rem;
+    margin-right: 0;
+  }
+
+  .sector-tabs {
+    margin-top: 0;
+  }
+
+  .sector-panel {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .sectors > .container {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .sectors-title {
+    margin-top: 1.75rem;
+  }
+
+  .sectors-lead {
+    margin-top: 1.5rem;
+  }
+
+  .sectors-layout {
+    margin-top: 2rem;
+  }
+
+  .sector-tab {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .sector-tab-index {
+    width: 48px;
+    font-size: 1.25rem;
+  }
+
+  .sector-tab-name {
+    font-size: 1.0625rem;
+  }
+
+  .sector-panel-body {
+    padding: 24px 20px 32px;
+  }
+
+  .sector-panel-index {
+    top: 22px;
+    right: 20px;
+    left: auto;
+    font-size: 3rem;
+  }
+
+  .sector-panel-title {
+    max-width: calc(100% - 80px);
+    font-size: 1.5rem;
+    line-height: 30px;
+  }
+
+  .sector-panel-text {
+    font-size: 1rem;
+  }
+}
+
+/* ========== Industries page: supporting your requirements ========== */
+.req {
+  background: #f8fafc;
+  color: #1e1e1e;
+}
+
+.req > .container {
+  padding-top: 66px;
+  padding-bottom: 108px;
+}
+
+.req .section-label-sep {
+  margin-inline: 0.12em calc(0.12em + 6px);
+}
+
+.req-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 738fr) minmax(0, 542fr);
+  align-items: start;
+  margin-top: 46px;
+}
+
+.req-intro {
+  padding-right: 24px;
+}
+
+.section-title.req-title {
+  max-width: none;
+  font-size: clamp(2rem, 3.75vw, 2.9375rem);
+  line-height: 1.2;
+  letter-spacing: 0.012em;
+  color: #111;
+}
+
+.req-title .section-title-strong {
+  margin-bottom: 0.13em;
+  font-size: 1.475em;
+  line-height: 1.03;
+  letter-spacing: -0.007em;
+}
+
+.req-lead {
+  max-width: 665px;
+  margin: 45px 0 0;
+}
+
+.req-intro .btn {
+  margin-top: 55px;
+}
+
+.req-list {
+  list-style: none;
+  border-left: 1px solid #e5e5e5;
+}
+
+.req-item {
+  display: grid;
+  grid-template-columns: 81px minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 25px 0 14px 28px;
+}
+
+.req-item + .req-item {
+  border-top: 1px solid #e5e5e5;
+}
+
+.req-index {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  height: 100px;
+  padding-bottom: 6px;
+  border-right: 1px solid #e5e5e5;
+  font-size: 3.125rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+}
+
+.req-body {
+  align-self: start;
+  max-width: 355px;
+  padding: 2px 0 0 20px;
+}
+
+.req-item-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000;
+}
+
+.req-item-text {
+  margin-top: 10px;
+  font-size: 0.9375rem;
+  line-height: 18px;
+  color: #222;
+}
+
+.req-arrow {
+  width: 37px;
+  height: 14px;
+  margin: 7px 0 0 16px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 1100px) {
+  .req-layout {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 3rem;
+  }
+
+  .req-intro {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .req > .container {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .req-layout {
+    margin-top: 1.75rem;
+  }
+
+  .section-title.req-title {
+    font-size: 1.75rem;
+  }
+
+  .req-lead {
+    margin-top: 1.5rem;
+  }
+
+  .req-intro .btn {
+    margin-top: 2rem;
+  }
+
+  .req-item {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+    padding: 20px 0 20px 16px;
+  }
+
+  .req-index {
+    height: auto;
+    min-height: 64px;
+    font-size: 2.25rem;
+  }
+
+  .req-body {
+    padding-left: 14px;
+  }
+
+  .req-item-title {
+    font-size: 1.125rem;
+  }
+
+  .req-arrow {
+    width: 28px;
+    margin-left: 10px;
+  }
+}
+
 /* ========== Product page: categories ========== */
 .categories {
   background: #f8fafc;
