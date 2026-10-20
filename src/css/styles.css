@@ -2891,6 +2891,22 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   }
 }
 
+/* ========== Industries page: call to action (extends the Services CTA) ========== */
+.cta.cta--industries .cta-inner {
+  padding-top: 117px;
+  padding-left: var(--gutter);
+}
+
+.cta--industries .cta-text {
+  max-width: 310px;
+}
+
+@media (max-width: 767px) {
+  .cta.cta--industries .cta-inner {
+    padding-top: 5rem;
+  }
+}
+
 /* ========== Industries page: hero (variant of the Services photo hero) ========== */
 .page-hero.page-hero--industries .page-hero-inner {
   padding-top: 194px;
