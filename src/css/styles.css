@@ -37,6 +37,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps #section jumps clear of the fixed header bar */
+  scroll-padding-top: 40px;
 }
 
 body {
@@ -291,11 +293,12 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 
 /* ========== Header ========== */
 .site-header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto;
   z-index: 100;
   padding-top: 59px;
   color: #fff;
+  transition: padding-top 0.35s ease;
 }
 
 .header-inner {
@@ -390,6 +393,53 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 .nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
 .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Scrolled: the header floats as a rounded glass bar (Relyco Tech Solution navbar: 100px radius,
+   18px blur). The glass sits on a pseudo-element so the fixed mobile menu inside the header
+   still covers the whole screen; it is tinted dark so the white links stay readable over the
+   light sections. */
+.header-inner {
+  position: relative;
+}
+
+.header-inner::before {
+  content: "";
+  position: absolute;
+  inset: -12px calc(var(--gutter) - 20px) -12px calc(var(--gutter) - 8px);
+  z-index: -2;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  background: rgba(17, 17, 17, 0.72);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.site-header.is-scrolled {
+  padding-top: 28px;
+  pointer-events: none;
+}
+
+.site-header.is-scrolled .header-inner > * {
+  pointer-events: auto;
+}
+
+.site-header.is-scrolled .header-inner::before {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .header-inner::before {
+    inset: -8px max(6px, calc(var(--gutter) - 14px));
+  }
+
+  .site-header.is-scrolled {
+    padding-top: 18px;
+  }
+}
 
 /* ========== Hero ========== */
 .hero {
@@ -2553,10 +2603,11 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 .service-detail-list li::before {
   content: "";
   position: absolute;
-  top: 7px;
+  top: 5.5px;
   left: 0;
-  width: 20px;
-  height: 1px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: #ff5a1f;
 }
 

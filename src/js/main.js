@@ -6,6 +6,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 document.addEventListener('DOMContentLoaded', () => {
   setCurrentYear();
   initMobileNav();
+  initHeaderScroll();
   initNavActive();
   initSplitText();
   initSliders();
@@ -307,6 +308,25 @@ function initNavActive() {
       });
     });
   });
+}
+
+// Header: switch to the floating glass bar once the page has been scrolled.
+function initHeaderScroll() {
+  const header = document.querySelector('[data-header]');
+  if (!header) return;
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    header.classList.toggle('is-scrolled', window.scrollY > 10);
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
 }
 
 function initMobileNav() {
