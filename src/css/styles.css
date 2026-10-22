@@ -2958,6 +2958,17 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   }
 }
 
+/* ========== About page: call to action (variant of the Industries CTA) ========== */
+.cta.cta--about .cta-inner {
+  padding-top: 108px;
+}
+
+@media (max-width: 767px) {
+  .cta.cta--about .cta-inner {
+    padding-top: 5rem;
+  }
+}
+
 /* ========== Industries page: hero (variant of the Services photo hero) ========== */
 .page-hero.page-hero--industries .page-hero-inner {
   padding-top: 194px;
@@ -3003,6 +3014,553 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 
   .page-hero--industries .page-hero-actions {
     margin-top: 2.5rem;
+  }
+}
+
+/* ========== About page: hero (variant of the Services photo hero) ========== */
+.page-hero--about .page-hero-bg {
+  object-position: 76% center;
+}
+
+.page-hero.page-hero--about .page-hero-inner {
+  padding-top: 159px;
+}
+
+.page-hero--about .page-hero-title-strong {
+  margin-bottom: 3px;
+}
+
+.page-hero--about .page-hero-text:first-of-type {
+  margin-top: 38px;
+}
+
+/* Copy block: 605 x 204, Inter 20px, fixed line breaks */
+.page-hero--about .page-hero-text,
+.page-hero--about .page-hero-text:first-of-type {
+  width: 605px;
+  max-width: 100%;
+  line-height: 24px;
+}
+
+.page-hero--about .page-hero-text + .page-hero-text {
+  margin-top: 36px;
+}
+
+.page-hero--about .page-hero-actions {
+  margin-top: 49px;
+}
+
+.page-hero--about .scroll-cue {
+  margin-top: 44px;
+}
+
+@media (max-width: 1024px) {
+  .page-hero--about .page-hero-text + .page-hero-text {
+    margin-top: 2rem;
+  }
+
+  .page-hero--about .page-hero-actions {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-hero--about .page-hero-text,
+  .page-hero--about .page-hero-text:first-of-type {
+    line-height: 1.55;
+  }
+
+  .page-hero--about .page-hero-text + .page-hero-text {
+    margin-top: 1rem;
+  }
+}
+
+/* ========== About page: who we are ========== */
+.who {
+  background: #f8fafc;
+  color: #1e1e1e;
+}
+
+.who > .container {
+  padding-top: 66px;
+  padding-bottom: 28px;
+}
+
+/* The copy keeps its design width so its line breaks hold on screens narrower than 1440px;
+   the image column absorbs the difference (it shrinks first, the copy only below ~1280px). */
+.who-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 39px;
+  margin-right: calc(-1 * var(--gutter) + 22px);
+}
+
+.who-copy {
+  flex: 0 1 666px;
+  min-width: 0;
+  /* Keeps the design's ~66px below the last paragraph when the copy, not the image, is the
+     taller column (screens narrower than 1440px). */
+  padding-bottom: 38px;
+}
+
+.who-aside {
+  flex: 1 1 440px;
+  min-width: 0;
+  max-width: 632px;
+}
+
+.section-title.who-title {
+  max-width: none;
+  margin-top: 21px;
+}
+
+.who-text {
+  max-width: 651px;
+  margin-top: 49px;
+  font-size: 1.25rem;
+  line-height: 24px;
+}
+
+.who-text p + p {
+  margin-top: 24px;
+}
+
+.who-image {
+  width: 100%;
+  aspect-ratio: 632 / 597;
+  object-fit: cover;
+  object-position: 88% center;
+  clip-path: polygon(0 0, 80% 0, 100% 19.6%, 100% 100%, 17.4% 100%, 0 79.9%);
+}
+
+.who-meta {
+  width: max-content;
+  margin: 42px 51px 0 auto;
+  list-style: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .who-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3rem;
+    margin-right: 0;
+  }
+
+  .who-copy,
+  .who-aside {
+    flex: none;
+  }
+
+  .who-copy {
+    padding-bottom: 0;
+  }
+
+  .who-aside {
+    width: min(100%, 632px);
+  }
+
+  .who-meta {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .who > .container {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .who-layout {
+    margin-top: 1.75rem;
+    gap: 2.5rem;
+  }
+
+  .section-title.who-title {
+    margin-top: 0;
+  }
+
+  .who-text {
+    margin-top: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .who-text p + p {
+    margin-top: 1rem;
+  }
+
+  .who-meta {
+    margin-top: 1.5rem;
+  }
+}
+
+/* ========== About page: how we support you ========== */
+.approach {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  color: #f8fafc;
+}
+
+/* Slanted photo in the top-right corner. 650px at 1440px; on narrower screens the second term
+   shrinks it faster so its bottom-left corner stays ~50px clear of the intro paragraph. */
+.approach-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(45.14%, calc(94.5% - 710px));
+  aspect-ratio: 650 / 435;
+  object-fit: cover;
+  object-position: 68% center;
+  clip-path: polygon(45.1% 0, 100% 0, 100% 60%, 83.4% 100%, 0 100%);
+}
+
+.approach-inner {
+  position: relative;
+  padding-top: 66px;
+  padding-bottom: 66px;
+}
+
+.approach .section-label {
+  color: #f8fafc;
+}
+
+.section-title.approach-title {
+  max-width: none;
+  margin-top: 47px;
+  color: #f8fafc;
+}
+
+.approach-title .section-title-strong {
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.approach-lead {
+  max-width: 660px;
+  margin: 27px 0 0;
+  color: #f8fafc;
+}
+
+/* The steps keep the design's ~295px columns (1248px row) so their text wraps as designed.
+   On narrower desktops the gaps tighten (23px -> 12px) and the row extends into the right page
+   margin (never closer than 16px to the screen edge) instead of squeezing the columns; the left
+   edge stays aligned with the heading. */
+.approach-steps {
+  --steps-ml: clamp(0px, calc((100% - 1248px) / 2), 16px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: clamp(12px, calc(100vw - 1417px), 23px);
+  margin-top: 66px;
+  margin-left: var(--steps-ml);
+  margin-right: max(calc(16px - var(--gutter)), min(16px, calc(100% - 1248px - var(--steps-ml))));
+  list-style: none;
+}
+
+.approach-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.approach-step-line {
+  position: relative;
+  align-self: stretch;
+  height: 2px;
+  margin-top: 5px;
+  background: #f8fafc;
+}
+
+.approach-step-line::before,
+.approach-step-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+}
+
+.approach-step-line::before {
+  left: 0;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #f8fafc;
+}
+
+.approach-step-line::after {
+  right: 1px;
+  width: 10.5px;
+  height: 10.5px;
+  margin-top: -5.25px;
+  border-top: 2.5px solid #f8fafc;
+  border-right: 2.5px solid #f8fafc;
+  transform: rotate(45deg);
+}
+
+.approach-step-index {
+  position: relative;
+  margin: 28px 0 0 5px;
+  padding-bottom: 8px;
+  font-size: 3.125rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #e5e7eb;
+}
+
+.approach-step-index::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 29px;
+  height: 1px;
+  background: #f8fafc;
+}
+
+.approach-step-title,
+.approach-step-text {
+  margin-left: 5px;
+}
+
+.approach-step-title {
+  max-width: 245px;
+  margin-top: 22px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #f8fafc;
+}
+
+.approach-step-text {
+  max-width: 290px;
+  margin-top: 23px;
+  font-size: 0.9375rem;
+  line-height: 18px;
+  color: #e5e7eb;
+}
+
+@media (max-width: 1024px) {
+  .approach-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: clamp(200px, 36vw, 340px);
+    aspect-ratio: auto;
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .approach-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 23px;
+    margin: 66px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .approach-inner {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .section-title.approach-title {
+    margin-top: 1.75rem;
+  }
+
+  .approach-lead {
+    margin-top: 1.5rem;
+  }
+
+  .approach-steps {
+    margin-top: 2.5rem;
+  }
+
+  .approach-step-index {
+    font-size: 2.5rem;
+  }
+
+  .approach-step-title {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .approach-steps {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.5rem;
+  }
+
+  .approach-step-text {
+    max-width: none;
+  }
+}
+
+/* ========== About page: what we stand for ========== */
+.values {
+  position: relative;
+  overflow: hidden;
+  background: #f8fafc;
+  color: #1e1e1e;
+}
+
+/* Diagonal photo band in the top-right corner. 703px at 1440px; on narrower screens the second
+   term shrinks it faster so it stays clear of the heading and intro paragraph. */
+.values-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(48.82%, calc(100% - 737px));
+  aspect-ratio: 703 / 410;
+  object-fit: cover;
+  object-position: 61% center;
+  clip-path: polygon(0 0, 52.5% 0, 100% 100%, 43.7% 100%);
+}
+
+.values-inner {
+  position: relative;
+  padding-top: 66px;
+  padding-bottom: 67px;
+}
+
+.section-title.values-title {
+  max-width: none;
+  margin-top: 47px;
+  color: #111;
+}
+
+.values-title .section-title-strong {
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.values-lead {
+  max-width: 660px;
+  margin: 27px 0 0;
+  color: #1e1e1e;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 62px;
+  border-top: 1px solid #a9a9a9;
+  border-left: 1px solid #a9a9a9;
+  list-style: none;
+}
+
+.value-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 237px;
+  padding: 42px 44px 36px;
+  border-right: 1px solid #a9a9a9;
+  border-bottom: 1px solid #a9a9a9;
+}
+
+.value-card-index {
+  position: relative;
+  padding-bottom: 8px;
+  font-size: 3.125rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #a9a9a9;
+}
+
+.value-card-index::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 29px;
+  height: 1px;
+  background: #000;
+}
+
+.value-card-arrow {
+  position: absolute;
+  top: 61px;
+  right: 109px;
+  width: 28px;
+  height: 14px;
+  fill: none;
+  stroke: #a9a9a9;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.value-card-title {
+  margin-top: 22px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.value-card-text {
+  max-width: 460px;
+  margin-top: 16px;
+  font-size: 0.9375rem;
+  line-height: 18px;
+  color: #1e1e1e;
+}
+
+@media (max-width: 1024px) {
+  .values-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: clamp(200px, 36vw, 340px);
+    aspect-ratio: auto;
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .value-card-arrow {
+    right: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .values-inner {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .section-title.values-title {
+    margin-top: 1.75rem;
+  }
+
+  .values-lead {
+    margin-top: 1.5rem;
+  }
+
+  .values-grid {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 2.5rem;
+  }
+
+  .value-card {
+    min-height: 0;
+    padding: 28px 24px 32px;
+  }
+
+  .value-card-index {
+    font-size: 2.5rem;
+  }
+
+  .value-card-arrow {
+    top: 40px;
+    right: 24px;
   }
 }
 

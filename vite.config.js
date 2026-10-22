@@ -18,6 +18,7 @@ export default defineConfig({
         product: resolve(root, 'product.html'),
         services: resolve(root, 'services.html'),
         industries: resolve(root, 'industries.html'),
+        about: resolve(root, 'about.html'),
       },
     },
   },
