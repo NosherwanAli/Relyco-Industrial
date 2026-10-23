@@ -14,7 +14,62 @@ document.addEventListener('DOMContentLoaded', () => {
   initStepsLine();
   initBackToTop();
   initSectorTabs();
+  initRfqForm();
 });
+
+// Contact page: request-for-quotation form. There is no backend, so a valid form opens the
+// visitor's email app with the details filled in (attachments have to be added there).
+function initRfqForm() {
+  const form = document.querySelector('[data-rfq-form]');
+  if (!form) return;
+
+  const status = form.querySelector('[data-rfq-status]');
+  const upload = form.querySelector('[data-rfq-upload]');
+  const fileInput = upload.querySelector('input[type="file"]');
+  const uploadTitle = upload.querySelector('[data-rfq-upload-title]');
+  const defaultTitle = uploadTitle.textContent;
+
+  const showFiles = () => {
+    const names = [...fileInput.files].map((file) => file.name);
+    uploadTitle.textContent = names.length ? names.join(', ') : defaultTitle;
+  };
+  fileInput.addEventListener('change', showFiles);
+  ['dragenter', 'dragover'].forEach((type) => upload.addEventListener(type, (event) => {
+    event.preventDefault();
+    upload.classList.add('is-dragover');
+  }));
+  ['dragleave', 'drop'].forEach((type) => upload.addEventListener(type, () => upload.classList.remove('is-dragover')));
+  upload.addEventListener('drop', (event) => {
+    event.preventDefault();
+    fileInput.files = event.dataTransfer.files;
+    showFiles();
+  });
+
+  form.addEventListener('input', (event) => event.target.classList.remove('is-invalid'));
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const invalid = [...form.elements].filter((el) => el.willValidate && !el.checkValidity());
+    form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+    if (invalid.length) {
+      invalid.forEach((el) => el.classList.add('is-invalid'));
+      invalid[0].focus();
+      status.textContent = 'Please complete the required fields marked with *.';
+      return;
+    }
+
+    const lines = [...form.querySelectorAll('.rfq-input')]
+      .filter((el) => el.value.trim())
+      .map((el) => `${form.querySelector(`label[for="${el.id}"]`).firstChild.textContent.trim()}: ${el.value.trim()}`);
+    if (fileInput.files.length) lines.push('', `Documents to attach: ${[...fileInput.files].map((f) => f.name).join(', ')}`);
+
+    const subject = `Request for Quotation - ${form.elements.company.value.trim()}`;
+    window.location.href = `mailto:info@relycoltd.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    status.textContent = fileInput.files.length
+      ? 'Your email app has opened with your details. Please attach your documents before sending.'
+      : 'Your email app has opened with your details. Please review and send the email.';
+  });
+}
 
 // Industries page: tab list that switches the detail panel (click, or arrow keys / Home / End).
 function initSectorTabs() {

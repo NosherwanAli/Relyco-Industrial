@@ -2969,6 +2969,25 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   }
 }
 
+/* ========== Contact page: call to action (variant of the Industries CTA) ========== */
+.cta.cta--contact .cta-inner {
+  padding-top: 109px;
+}
+
+.cta--contact .cta-text {
+  max-width: 305px;
+}
+
+.cta--contact .cta-actions .btn--light {
+  padding-right: 46px;
+}
+
+@media (max-width: 767px) {
+  .cta.cta--contact .cta-inner {
+    padding-top: 5rem;
+  }
+}
+
 /* ========== Industries page: hero (variant of the Services photo hero) ========== */
 .page-hero.page-hero--industries .page-hero-inner {
   padding-top: 194px;
@@ -3561,6 +3580,648 @@ h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
   .value-card-arrow {
     top: 40px;
     right: 24px;
+  }
+}
+
+/* ========== Contact page: hero (dark variant of the page hero) ========== */
+.page-hero.page-hero--contact .page-hero-inner {
+  padding-top: 194px;
+}
+
+.page-hero--contact .page-hero-title {
+  max-width: none;
+}
+
+.page-hero--contact .page-hero-text {
+  max-width: 560px;
+  margin-top: 38px;
+}
+
+.page-hero--contact .page-hero-actions {
+  margin-top: 107px;
+}
+
+.page-hero--contact .scroll-cue {
+  margin-top: 122px;
+}
+
+/* Photo with an offset orange frame behind it. 542px wide at 1440px; on narrower desktops it
+   shrinks so it keeps clear of the copy. The frame is sized in % so it scales with the photo. */
+.contact-hero-visual {
+  position: absolute;
+  top: 200px;
+  right: calc(var(--gutter) + 45px);
+  width: min(542px, calc(100% - 2 * var(--gutter) - 685px));
+  aspect-ratio: 542 / 500;
+}
+
+.contact-hero-frame {
+  position: absolute;
+  top: -5%;
+  left: 14.6%;
+  width: 91.5%;
+  height: 91%;
+  border: 1px solid #ff5a1f;
+}
+
+.contact-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Darkens the photo slightly and fades its bottom and left edges into the background */
+.contact-hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(17, 17, 17, 0) 66%, rgba(17, 17, 17, 0.72) 100%),
+    linear-gradient(to right, rgba(17, 17, 17, 0.45) 0%, rgba(17, 17, 17, 0.3) 20%, rgba(17, 17, 17, 0) 36%),
+    rgba(17, 17, 17, 0.1);
+  pointer-events: none;
+}
+
+.page-hero--contact .page-hero-actions .btn--light {
+  padding-right: 40px;
+}
+
+.page-hero--contact .page-hero-actions .btn--outline {
+  padding-right: 59px;
+}
+
+@media (max-width: 1024px) {
+  .contact-hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 2;
+    width: min(calc(100% - 2 * var(--gutter) - 32px), 542px);
+    margin: 4rem calc(var(--gutter) + 32px) 4rem auto;
+  }
+
+  .page-hero--contact .page-hero-text {
+    max-width: 600px;
+    margin-top: 2rem;
+  }
+
+  .page-hero--contact .page-hero-actions {
+    margin-top: 2.5rem;
+  }
+}
+
+/* ========== Contact page: get in touch (contact details + RFQ form) ========== */
+.enquiry {
+  --enq-ink: #101113;
+  --enq-accent: #ff5800;
+  --enq-line: #cbd1d5;
+  background: #f3f6f8;
+  color: var(--enq-ink);
+}
+
+/* The copy column keeps its design width so its text wraps as designed; the form card takes
+   the rest (up to 735px) and shrinks first on narrower desktops. */
+.enquiry-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 503px) minmax(0, 735px);
+  justify-content: space-between;
+  column-gap: 44px;
+  align-items: stretch;
+  padding-top: 84px;
+  padding-bottom: 51px;
+}
+
+.enquiry-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.enquiry-label {
+  color: var(--enq-ink);
+}
+
+.enquiry-title {
+  margin-top: 52px;
+  font-size: 3.625rem;
+  font-weight: 700;
+  line-height: 54px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--enq-ink);
+}
+
+.enquiry-lead {
+  max-width: 500px;
+  margin-top: 29px;
+  font-size: 0.9375rem;
+  line-height: 25.5px;
+  color: #3f4248;
+}
+
+.enquiry-channels {
+  align-self: stretch;
+  margin-top: 42px;
+  list-style: none;
+}
+
+.enquiry-channel {
+  padding: 39px 0 36px;
+  border-top: 1px solid #dfe3e7;
+}
+
+.enquiry-channel:last-child {
+  padding-bottom: 0;
+}
+
+.enquiry-channel-head {
+  display: flex;
+  align-items: center;
+}
+
+.enquiry-channel-index {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  width: 82px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--enq-accent);
+}
+
+.enquiry-channel-index::after {
+  content: "";
+  width: 39px;
+  height: 1px;
+  background: #c7ccd0;
+}
+
+.enquiry-channel-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: var(--enq-ink);
+}
+
+.enquiry-channel-text {
+  margin: 8px 0 0 82px;
+  font-size: 0.875rem;
+  line-height: 20px;
+  color: #50545a;
+}
+
+.enquiry-channel-contact {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  margin: 26px 0 0 91px;
+}
+
+.enquiry-channel-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #ebedef;
+}
+
+.enquiry-channel-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--enq-ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.enquiry-channel-value {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--enq-ink);
+}
+
+.enquiry-channel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--enq-accent);
+  transition: gap var(--transition), color var(--transition);
+}
+
+.enquiry-channel-link svg {
+  width: 10px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .enquiry-channel-link:hover {
+    gap: 16px;
+    color: #e04a00;
+  }
+}
+
+.enquiry-tagline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0 -10px 55px;
+  padding-top: 40px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--enq-ink);
+}
+
+/* Thin cross mark to the left of the tagline */
+.enquiry-tagline::before,
+.enquiry-tagline::after {
+  content: "";
+  position: absolute;
+  background: #b5bdc3;
+}
+
+.enquiry-tagline::before {
+  left: -63px;
+  bottom: 9px;
+  width: 36px;
+  height: 1px;
+  transform: translateY(-9px);
+}
+
+.enquiry-tagline::after {
+  left: -45px;
+  bottom: 0;
+  width: 1px;
+  height: 36px;
+}
+
+/* ---- Form card ---- */
+.rfq {
+  align-self: start;
+  margin-top: 10px;
+  padding: 21px 44px 27px;
+  border: 1px solid #d8dee2;
+  background: #f8f9fa;
+}
+
+.rfq-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #d8dee2;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--enq-ink);
+}
+
+.rfq-top-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rfq-top-brand::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: #c8ced1;
+}
+
+.rfq-title {
+  margin-top: 21px;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: uppercase;
+  color: var(--enq-ink);
+}
+
+.rfq-intro {
+  margin-top: 1px;
+  font-size: 0.75rem;
+  line-height: 16px;
+  color: #565a61;
+}
+
+.rfq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin-top: 20px;
+}
+
+.rfq-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rfq-field--full {
+  grid-column: 1 / -1;
+}
+
+.rfq-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 15px;
+  color: var(--enq-ink);
+}
+
+.rfq-req {
+  color: #ff4e00;
+}
+
+.rfq-optional {
+  font-weight: 400;
+  color: #555a60;
+}
+
+.rfq-input {
+  width: 100%;
+  height: 36px;
+  margin-top: 6px;
+  padding: 0 14px;
+  border: 1px solid var(--enq-line);
+  border-radius: 0;
+  background: #fafcfc;
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--enq-ink);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.rfq-input::placeholder {
+  color: #8a8e94;
+  opacity: 1;
+}
+
+.rfq-input:focus {
+  outline: none;
+  border-color: var(--enq-accent);
+  box-shadow: 0 0 0 3px rgba(255, 88, 0, 0.12);
+}
+
+.rfq-input.is-invalid {
+  border-color: #e5484d;
+}
+
+.rfq-select {
+  padding-right: 36px;
+  appearance: none;
+  background: #fafcfc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23101113' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 11px center / 11px 7px;
+  padding-left: 17px;
+  color: #1c1e21;
+  cursor: pointer;
+}
+
+.rfq-textarea {
+  height: 59px;
+  padding: 11px 14px;
+  line-height: 16px;
+  resize: none;
+}
+
+.rfq-field:has(#rfq-date) {
+  grid-column: 1;
+}
+
+.rfq-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 57px;
+  margin-top: 6px;
+  padding: 8px 14px;
+  border: 1px dashed #c3c9cd;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.rfq-upload.is-dragover,
+.rfq-upload:focus-within {
+  border-color: var(--enq-accent);
+  background: #fff8f4;
+}
+
+.rfq-upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.rfq-upload-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--enq-ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rfq-upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rfq-upload-title {
+  font-size: 0.75rem;
+  line-height: 16px;
+  color: var(--enq-ink);
+}
+
+.rfq-upload-hint {
+  font-size: 0.5625rem;
+  line-height: 12px;
+  color: #6c7177;
+}
+
+.rfq-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  width: 100%;
+  height: 46px;
+  margin-top: 14px;
+  border: 0;
+  background: linear-gradient(90deg, #ff7301 0%, #fe3d1c 50%, #ff013b 100%);
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: filter var(--transition);
+}
+
+.rfq-submit svg {
+  width: 18px;
+  height: 11px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rfq-submit:hover {
+    filter: brightness(1.06);
+  }
+
+  .rfq-submit:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+.rfq-submit:focus-visible {
+  outline: 2px solid var(--enq-ink);
+  outline-offset: 2px;
+}
+
+.rfq-note {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 0.5625rem;
+  line-height: 13px;
+  color: #656a70;
+}
+
+.rfq-note svg {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  margin-top: -1px;
+  fill: none;
+  stroke: #656a70;
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.rfq-status:empty {
+  display: none;
+}
+
+.rfq-status {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  line-height: 16px;
+  color: #c2410c;
+}
+
+@media (max-width: 1240px) {
+  .enquiry-layout {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 3rem;
+  }
+
+  .enquiry-tagline {
+    margin-top: 3rem;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  .rfq {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .enquiry-layout {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .enquiry-title {
+    margin-top: 1.75rem;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .enquiry-lead {
+    margin-top: 1.5rem;
+  }
+
+  .enquiry-channel-text,
+  .enquiry-channel-contact {
+    margin-left: 0;
+  }
+
+  .enquiry-channel-index {
+    width: 64px;
+    gap: 12px;
+  }
+
+  .enquiry-channel-index::after {
+    width: 28px;
+  }
+
+  .rfq {
+    padding: 20px 20px 24px;
+  }
+
+  .rfq-top {
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .rfq-top-brand::after {
+    display: none;
+  }
+
+  .rfq-title {
+    font-size: 1.375rem;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rfq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rfq-field:has(#rfq-date) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .rfq-top-brand {
+    display: none;
   }
 }
 

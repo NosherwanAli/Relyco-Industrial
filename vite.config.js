@@ -19,6 +19,7 @@ export default defineConfig({
         services: resolve(root, 'services.html'),
         industries: resolve(root, 'industries.html'),
         about: resolve(root, 'about.html'),
+        contact: resolve(root, 'contact.html'),
       },
     },
   },
